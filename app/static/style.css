@@ -207,6 +207,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(212, 175, 55, 0.1);
     transition: all var(--transition-normal);
 }
@@ -227,11 +228,14 @@ body {
     font-size: 1.35rem;
     font-weight: 800;
     letter-spacing: -0.01em;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .brand-icon {
     font-size: 1.4rem;
     filter: drop-shadow(0 2px 6px rgba(212, 175, 55, 0.3));
+    flex-shrink: 0;
 }
 
 .brand-name {
@@ -278,6 +282,7 @@ body {
     display: flex;
     align-items: center;
     gap: 14px;
+    flex-shrink: 0;
 }
 
 .btn-nav-cta {
@@ -293,12 +298,23 @@ body {
     border-radius: var(--radius-pill);
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
     transition: all var(--transition-normal);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .btn-nav-cta:hover {
     transform: translateY(-2px);
     box-shadow: var(--gold-glow);
     background: var(--gold-gradient-hover);
+}
+
+.nav-cta-text {
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-cta-compact {
+    display: none;
 }
 
 .mobile-toggle {
@@ -309,6 +325,8 @@ body {
     flex-direction: column;
     gap: 5px;
     padding: 6px;
+    flex-shrink: 0;
+    z-index: 1001;
 }
 
 .mobile-toggle .bar {
@@ -317,6 +335,18 @@ body {
     background: var(--color-accent);
     border-radius: 2px;
     transition: all var(--transition-fast);
+}
+
+.mobile-toggle.open .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-toggle.open .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ==========================================================================
@@ -1386,23 +1416,52 @@ body {
 }
 
 @media (max-width: 768px) {
+    .navbar-wrapper {
+        padding: 10px 14px;
+    }
+
+    .navbar {
+        padding: 8px 16px;
+        gap: 12px;
+    }
+
+    .brand-logo {
+        font-size: 1.15rem;
+        gap: 8px;
+    }
+
+    .brand-icon {
+        font-size: 1.25rem;
+    }
+
+    .nav-actions {
+        gap: 10px;
+    }
+
+    .btn-nav-cta {
+        padding: 7px 14px;
+        font-size: 0.82rem;
+        gap: 6px;
+    }
+
     .mobile-toggle {
         display: flex;
+        padding: 6px 2px;
     }
 
     .nav-menu {
         position: fixed;
-        top: 76px;
-        left: 16px;
-        right: 16px;
+        top: 66px;
+        left: 14px;
+        right: 14px;
         background: rgba(18, 18, 18, 0.98);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border: 1px solid var(--color-border-gold);
         border-radius: var(--radius-lg);
         flex-direction: column;
-        padding: 24px;
-        gap: 18px;
+        padding: 22px;
+        gap: 16px;
         display: none;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
     }
@@ -1453,11 +1512,84 @@ body {
 }
 
 @media (max-width: 480px) {
+    .navbar-wrapper {
+        padding: 8px 10px;
+    }
+
+    .navbar {
+        padding: 6px 12px;
+        gap: 10px;
+    }
+
+    .brand-logo {
+        font-size: 1.05rem;
+        gap: 6px;
+    }
+
+    .brand-icon {
+        font-size: 1.15rem;
+    }
+
+    .nav-actions {
+        gap: 8px;
+    }
+
+    .btn-nav-cta {
+        padding: 6px 10px;
+        font-size: 0.78rem;
+        gap: 5px;
+    }
+
+    .btn-nav-cta svg {
+        width: 13px;
+        height: 13px;
+    }
+
+    .nav-cta-full {
+        display: none;
+    }
+
+    .nav-cta-compact {
+        display: inline;
+    }
+
+    .nav-menu {
+        top: 60px;
+        left: 10px;
+        right: 10px;
+        padding: 18px;
+    }
+
     .tech-grid {
         grid-template-columns: 1fr;
     }
 
     .meta-badges-row {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 360px) {
+    .navbar-wrapper {
+        padding: 6px 6px;
+    }
+
+    .navbar {
+        padding: 5px 8px;
+        gap: 6px;
+    }
+
+    .brand-logo {
+        font-size: 0.95rem;
+        gap: 4px;
+    }
+
+    .btn-nav-cta {
+        padding: 5px 8px;
+        font-size: 0.74rem;
+    }
+
+    .btn-nav-cta svg {
+        display: none;
     }
 }
